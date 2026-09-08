@@ -1,5 +1,6 @@
 export const siteData = {
   brandShort: 'ERP + AI',
+  brandDescriptor: 'Operations Automation',
   siteName: 'ERP + AI Automation',
   tagline: 'Your ERP Runs the Business. AI Removes the Manual Work.',
   headlineLine1: 'Your ERP Runs the Business.',
@@ -11,13 +12,8 @@ export const siteData = {
   secondaryCTA: 'Explore What We Automate',
   trustLine: 'Works alongside your existing ERP. No replacement required.',
   headerCta: 'Book a Demo',
-  signInLabel: 'Sign In',
-  signInHref: '#sign-in',
-  navLinks: [
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Integrations', href: '#integrations' },
-    { label: 'Results', href: '#results' },
-    { label: 'FAQ', href: '#faq' },
-  ],
+  announcementTitle: 'AI + ERP Operations Automation',
+  announcementSupport:
+    'See where repetitive work can be automated without replacing your ERP.',
+  announcementCta: 'Explore Automation',
 }

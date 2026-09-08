@@ -35,3 +35,107 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.hero-backdrop {
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(79, 107, 255, 0.18), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 85% 30%, rgba(32, 215, 255, 0.1), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 60% 85%, rgba(34, 230, 167, 0.05), transparent 55%),
+    linear-gradient(180deg, rgba(5, 11, 24, 0.2), rgba(5, 11, 24, 0.95));
+}
+
+.hero-grid-mask {
+  background-image:
+    linear-gradient(rgba(29, 43, 67, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 43, 67, 0.45) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black 15%, transparent 75%);
+  opacity: 0.45;
+}
+
+.hero-panel-grid {
+  background-image:
+    linear-gradient(rgba(79, 107, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 107, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes flow-dot {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 0.375rem);
+    opacity: 0;
+  }
+}
+
+@keyframes flow-meter {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-status-pulse {
+    animation: status-pulse 2.8s ease-in-out infinite;
+  }
+
+  .animate-glow-breathe {
+    animation: glow-breathe 5s ease-in-out infinite;
+  }
+
+  .animate-soft-float {
+    animation: soft-float 4.5s ease-in-out infinite;
+  }
+
+  .flow-connector-dot {
+    animation: flow-dot 2.8s ease-in-out infinite;
+  }
+
+  .flow-meter-bar {
+    animation: flow-meter 2.4s ease-in-out infinite;
+  }
+}

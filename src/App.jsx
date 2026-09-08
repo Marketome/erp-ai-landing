@@ -1,6 +1,7 @@
 import Header from './components/layout/Header'
 import AutomationUseCases from './sections/AutomationUseCases'
 import Hero from './sections/Hero'
+import ManualVsAutomated from './sections/ManualVsAutomated'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <main>
         <Hero />
         <AutomationUseCases />
+        <ManualVsAutomated />
       </main>
     </>
   )

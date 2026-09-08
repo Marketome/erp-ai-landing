@@ -329,3 +329,246 @@ body {
     transform: none;
   }
 }
+
+/* Automation use cases section */
+.use-cases-section {
+  background-color: #07122a;
+}
+
+.use-cases-backdrop {
+  background:
+    radial-gradient(ellipse 58% 48% at 10% 6%, rgba(0, 186, 255, 0.16), transparent 58%),
+    radial-gradient(ellipse 52% 42% at 90% 10%, rgba(99, 72, 220, 0.14), transparent 60%),
+    radial-gradient(ellipse 48% 36% at 72% 0%, rgba(137, 81, 255, 0.1), transparent 55%),
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 40, 0.35) 0%,
+      #07122a 16%,
+      #0a1733 55%,
+      #07101f 100%
+    );
+}
+
+.use-cases-grid {
+  background-image: radial-gradient(rgba(140, 190, 255, 0.16) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 72% 58% at 50% 28%, black 12%, transparent 78%);
+  opacity: 0.22;
+}
+
+.use-cases-center-glow {
+  background: radial-gradient(
+    ellipse 55% 42% at 50% 52%,
+    rgba(79, 120, 255, 0.09),
+    transparent 70%
+  );
+}
+
+.use-case-card {
+  --card-accent: #4f6bff;
+  border: 1px solid rgba(170, 200, 255, 0.1);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 32, 58, 0.92) 0%,
+      rgba(12, 22, 42, 0.94) 48%,
+      rgba(10, 20, 38, 0.96) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 18px 44px rgba(0, 0, 0, 0.24);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.use-case-card__glow {
+  opacity: 0.55;
+  background:
+    radial-gradient(
+      circle at 88% 8%,
+      color-mix(in srgb, var(--card-accent) 22%, transparent),
+      transparent 42%
+    );
+  transition: opacity 0.25s ease;
+}
+
+.use-case-card__watermark {
+  color: var(--card-accent);
+  opacity: 0.035;
+}
+
+.use-case-card:hover {
+  border-color: color-mix(in srgb, var(--card-accent) 42%, rgba(255, 255, 255, 0.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 24px 52px rgba(0, 0, 0, 0.3),
+    0 0 0 1px color-mix(in srgb, var(--card-accent) 18%, transparent);
+}
+
+.use-case-card:hover .use-case-card__glow {
+  opacity: 1;
+}
+
+.use-case-card__number {
+  color: rgba(168, 196, 255, 0.72);
+}
+
+.use-case-card__icon {
+  border: 1px solid color-mix(in srgb, var(--card-accent) 38%, transparent);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--card-accent) 22%, rgba(8, 16, 34, 0.9)),
+      color-mix(in srgb, var(--card-accent) 8%, rgba(5, 11, 24, 0.85))
+    );
+  color: var(--card-accent);
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--card-accent) 18%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.use-case-card:hover .use-case-card__icon {
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent);
+  box-shadow:
+    0 0 22px color-mix(in srgb, var(--card-accent) 32%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.use-case-card__manual-dot {
+  background: rgba(232, 148, 112, 0.7);
+  box-shadow: 0 0 6px rgba(232, 148, 112, 0.25);
+}
+
+.use-case-card__flow-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--card-accent) 45%, rgba(255, 255, 255, 0.18)),
+    transparent
+  );
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.use-case-card__flow-dot {
+  background: var(--card-accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--card-accent) 50%, transparent);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.use-case-card__flow-arrow {
+  color: color-mix(in srgb, var(--card-accent) 70%, #9fb4d8);
+  opacity: 0.7;
+  transition:
+    opacity 0.25s ease,
+    color 0.25s ease;
+}
+
+.use-case-card:hover .use-case-card__flow-line {
+  opacity: 0.95;
+}
+
+.use-case-card:hover .use-case-card__flow-dot {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--card-accent) 75%, transparent);
+  transform: scale(1.15);
+}
+
+.use-case-card:hover .use-case-card__flow-arrow {
+  opacity: 1;
+  color: var(--card-accent);
+}
+
+.use-case-card__ai {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--card-accent) 8%, rgba(0, 186, 255, 0.04)) 100%
+  );
+  border: 1px solid transparent;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.use-case-card:hover .use-case-card__ai {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--card-accent) 14%, rgba(0, 186, 255, 0.08)) 100%
+  );
+  border-color: color-mix(in srgb, var(--card-accent) 12%, transparent);
+}
+
+.use-case-card__arrow {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 11, 24, 0.45);
+  color: #9fd4ff;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.use-case-card:hover .use-case-card__arrow {
+  border-color: color-mix(in srgb, var(--card-accent) 40%, transparent);
+  color: var(--card-accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--card-accent) 20%, transparent);
+}
+
+.use-case-card--blue {
+  --card-accent: #3d8bff;
+}
+.use-case-card--indigo {
+  --card-accent: #5b6fff;
+}
+.use-case-card--cyan {
+  --card-accent: #20d7ff;
+}
+.use-case-card--violet {
+  --card-accent: #8951ff;
+}
+.use-case-card--blue-violet {
+  --card-accent: #6a6dff;
+}
+.use-case-card--cyan-bright {
+  --card-accent: #00baff;
+}
+.use-case-card--indigo-violet {
+  --card-accent: #7a5cff;
+}
+.use-case-card--teal {
+  --card-accent: #22c997;
+}
+
+.use-cases-bottom__fade {
+  height: 48px;
+  margin-inline: auto;
+  max-width: 42rem;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 186, 255, 0.05) 40%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .use-case-card,
+  .use-case-card__icon,
+  .use-case-card__flow-line,
+  .use-case-card__flow-dot,
+  .use-case-card__flow-arrow,
+  .use-case-card__ai,
+  .use-case-card__arrow,
+  .use-case-card__glow {
+    transition: none;
+  }
+}

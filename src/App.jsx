@@ -1,4 +1,5 @@
 import Header from './components/layout/Header'
+import AutomationUseCases from './sections/AutomationUseCases'
 import Hero from './sections/Hero'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <AutomationUseCases />
       </main>
     </>
   )

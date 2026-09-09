@@ -1,4 +1,5 @@
 import Header from './components/layout/Header'
+import AutomationPaths from './sections/AutomationPaths'
 import AutomationUseCases from './sections/AutomationUseCases'
 import BusinessOutcomes from './sections/BusinessOutcomes'
 import ControlAndTrust from './sections/ControlAndTrust'
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <AutomationPaths />
         <AutomationUseCases />
         <ManualVsAutomated />
         <HowItWorks />

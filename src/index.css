@@ -6783,3 +6783,484 @@ body {
     align-items: center;
   }
 }
+/* ============================================================
+   PASS 1 — Page atmospheres (consolidated)
+   Visual rhythm preserved. Shared bridge chrome + color tokens.
+   ============================================================ */
+
+:root {
+  --atmo-cyan: 0, 186, 255;
+  --atmo-blue: 36, 91, 255;
+  --atmo-blue-soft: 79, 107, 255;
+  --atmo-violet: 137, 81, 255;
+  --atmo-emerald: 34, 201, 151;
+  --section-navy: #050b18;
+}
+
+/* Shared bridge chrome — each section keeps its own gradient fill */
+.paths-section::after,
+.use-cases-section::after,
+.workflow-section::after,
+.hiw-section::after,
+.systems-section::after,
+.outcomes-section::after,
+.control-section::after,
+.faq-section::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.workflow-section::before,
+.systems-section::before,
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Hero --- */
+.hero-backdrop {
+  background:
+    radial-gradient(ellipse 56% 48% at 10% 26%, rgba(var(--atmo-blue), 0.18), transparent 58%),
+    radial-gradient(ellipse 40% 36% at 26% 16%, rgba(72, 48, 150, 0.14), transparent 60%),
+    radial-gradient(ellipse 46% 42% at 52% 40%, rgba(var(--atmo-violet), 0.11), transparent 62%),
+    radial-gradient(ellipse 48% 44% at 84% 42%, rgba(var(--atmo-cyan), 0.11), transparent 58%),
+    radial-gradient(ellipse 34% 30% at 90% 74%, rgba(34, 230, 167, 0.035), transparent 62%),
+    linear-gradient(180deg, #071022 0%, var(--section-navy) 50%, #061126 100%);
+}
+
+.hero-atmosphere {
+  background:
+    radial-gradient(ellipse 34% 28% at 16% 48%, rgba(var(--atmo-blue), 0.1), transparent 70%),
+    radial-gradient(ellipse 30% 26% at 50% 38%, rgba(var(--atmo-violet), 0.09), transparent 72%),
+    radial-gradient(ellipse 36% 32% at 80% 50%, rgba(var(--atmo-cyan), 0.08), transparent 70%);
+}
+
+.hero-fade {
+  height: 7.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(8, 20, 50, 0.25) 35%,
+    rgba(8, 22, 63, 0.55) 68%,
+    rgba(8, 22, 63, 0.88) 100%
+  );
+}
+
+/* --- Automation Paths: first strong color moment --- */
+.paths-section {
+  background-color: #0a1a4a;
+}
+
+.paths-section::before {
+  height: 8.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 17, 38, 0.75) 0%,
+    rgba(10, 26, 74, 0.35) 48%,
+    transparent 100%
+  );
+}
+
+.paths-section::after {
+  height: 7rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(7, 14, 36, 0.35) 45%,
+    rgba(6, 14, 34, 0.85) 100%
+  );
+}
+
+.paths-backdrop {
+  background:
+    linear-gradient(180deg, rgba(8, 20, 55, 0.4) 0%, #0a1a4a 14%, #12307a 52%, #0a1a4a 100%),
+    radial-gradient(ellipse 78% 62% at 68% 44%, rgba(var(--atmo-blue), 0.34), transparent 72%);
+}
+
+.paths-atmosphere {
+  background:
+    radial-gradient(ellipse 46% 54% at 10% 46%, rgba(var(--atmo-violet), 0.28), transparent 70%),
+    radial-gradient(ellipse 52% 56% at 80% 38%, rgba(var(--atmo-cyan), 0.22), transparent 68%),
+    radial-gradient(ellipse 34% 36% at 76% 78%, rgba(var(--atmo-emerald), 0.08), transparent 72%);
+}
+
+/* --- Use Cases: quieter deep indigo --- */
+.use-cases-section {
+  background-color: #07101f;
+}
+
+.use-cases-backdrop {
+  background:
+    radial-gradient(ellipse 52% 42% at 8% 4%, rgba(var(--atmo-cyan), 0.12), transparent 58%),
+    radial-gradient(ellipse 48% 40% at 92% 8%, rgba(var(--atmo-violet), 0.12), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(var(--atmo-blue), 0.06), transparent 65%),
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 48, 0.55) 0%,
+      #07101f 18%,
+      #0a142c 52%,
+      #060e1c 100%
+    );
+}
+
+.use-cases-grid {
+  opacity: 0.18;
+}
+
+.use-cases-center-glow {
+  background: radial-gradient(
+    ellipse 58% 44% at 50% 58%,
+    rgba(var(--atmo-blue), 0.06),
+    transparent 72%
+  );
+}
+
+.use-cases-section::after {
+  height: 5.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 14, 28, 0.35) 50%,
+    rgba(8, 12, 24, 0.7) 100%
+  );
+}
+
+.use-cases-bottom__fade {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(90, 70, 140, 0.05) 35%,
+    rgba(var(--atmo-cyan), 0.04) 70%,
+    transparent
+  );
+}
+
+/* --- Manual vs Automated: friction → intelligence → flow --- */
+.workflow-section {
+  background-color: #060d1a;
+}
+
+.workflow-backdrop {
+  background:
+    linear-gradient(180deg, rgba(8, 12, 26, 0.35) 0%, #060d1a 12%, #0a1228 56%, #060d1a 100%),
+    radial-gradient(ellipse 38% 48% at 50% 48%, rgba(var(--atmo-blue-soft), 0.14), transparent 70%),
+    radial-gradient(ellipse 42% 50% at 8% 52%, rgba(90, 70, 120, 0.1), transparent 68%),
+    radial-gradient(ellipse 42% 50% at 92% 52%, rgba(var(--atmo-cyan), 0.11), transparent 68%);
+}
+
+.workflow-side-glows {
+  background:
+    radial-gradient(ellipse 34% 58% at 4% 50%, rgba(100, 72, 130, 0.09), transparent 72%),
+    radial-gradient(ellipse 36% 58% at 96% 50%, rgba(0, 200, 200, 0.09), transparent 72%),
+    radial-gradient(ellipse 28% 40% at 92% 62%, rgba(var(--atmo-emerald), 0.05), transparent 72%);
+}
+
+.workflow-section::before {
+  height: 5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 16, 34, 0.65) 0%,
+    transparent 100%
+  );
+}
+
+.workflow-section::after {
+  height: 5.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(5, 15, 34, 0.55) 100%
+  );
+}
+
+.workflow-bottom__fade {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(var(--atmo-blue), 0.06) 45%,
+    transparent
+  );
+}
+
+/* --- How It Works: calmer technical blue --- */
+.hiw-backdrop {
+  background:
+    linear-gradient(180deg, rgba(6, 16, 34, 0.35) 0%, #050f22 14%, #081833 55%, #050f22 100%),
+    radial-gradient(ellipse 58% 36% at 50% 42%, rgba(var(--atmo-blue), 0.12), transparent 70%),
+    radial-gradient(ellipse 40% 28% at 50% 38%, rgba(var(--atmo-cyan), 0.05), transparent 72%);
+}
+
+.hiw-stage-glows {
+  background:
+    radial-gradient(ellipse 26% 40% at 12% 48%, rgba(61, 139, 255, 0.09), transparent 70%),
+    radial-gradient(ellipse 24% 38% at 38% 46%, rgba(var(--atmo-violet), 0.08), transparent 70%),
+    radial-gradient(ellipse 28% 42% at 64% 44%, rgba(var(--atmo-cyan), 0.12), transparent 68%),
+    radial-gradient(ellipse 26% 38% at 90% 50%, rgba(var(--atmo-emerald), 0.08), transparent 70%);
+}
+
+.hiw-section::after {
+  height: 6rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(4, 18, 40, 0.35) 50%,
+    rgba(4, 20, 44, 0.7) 100%
+  );
+}
+
+.hiw-bottom__fade {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(var(--atmo-cyan), 0.07) 45%,
+    transparent
+  );
+}
+
+/* --- Existing Systems: major visual anchor --- */
+.systems-section {
+  background-color: #04101f;
+}
+
+.systems-backdrop {
+  background:
+    linear-gradient(180deg, rgba(4, 18, 40, 0.4) 0%, #04101f 12%, #072238 52%, #04101f 100%),
+    radial-gradient(ellipse 56% 48% at 50% 42%, rgba(var(--atmo-cyan), 0.16), transparent 68%),
+    radial-gradient(ellipse 70% 55% at 50% 44%, rgba(var(--atmo-blue), 0.12), transparent 72%);
+}
+
+.systems-hub-glow {
+  background:
+    radial-gradient(ellipse 42% 36% at 50% 42%, rgba(var(--atmo-cyan), 0.22), transparent 66%),
+    radial-gradient(ellipse 34% 30% at 50% 42%, rgba(var(--atmo-blue), 0.14), transparent 70%),
+    radial-gradient(ellipse 48% 42% at 50% 48%, rgba(var(--atmo-violet), 0.06), transparent 74%);
+}
+
+.systems-grid {
+  opacity: 0.4;
+}
+
+.systems-section::before {
+  height: 5.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 18, 42, 0.55) 0%,
+    transparent 100%
+  );
+}
+
+.systems-section::after {
+  height: 6rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(8, 14, 36, 0.4) 50%,
+    rgba(6, 12, 32, 0.75) 100%
+  );
+}
+
+.systems-bottom__fade {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(var(--atmo-violet), 0.05) 40%,
+    rgba(var(--atmo-blue), 0.04) 70%,
+    transparent
+  );
+}
+
+/* --- Business Outcomes: editorial blue/violet --- */
+.outcomes-section {
+  background-color: #070e20;
+}
+
+.outcomes-backdrop {
+  background:
+    linear-gradient(180deg, rgba(5, 14, 34, 0.35) 0%, #070e20 14%, #0c1634 55%, #070e20 100%),
+    radial-gradient(ellipse 54% 44% at 48% 42%, rgba(90, 70, 190, 0.14), transparent 70%),
+    radial-gradient(ellipse 40% 32% at 50% 78%, rgba(var(--atmo-blue), 0.08), transparent 70%);
+}
+
+.outcomes-atmosphere {
+  background:
+    radial-gradient(ellipse 38% 36% at 16% 46%, rgba(var(--atmo-violet), 0.12), transparent 70%),
+    radial-gradient(ellipse 34% 32% at 86% 40%, rgba(var(--atmo-cyan), 0.07), transparent 70%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(var(--atmo-blue), 0.08), transparent 68%);
+}
+
+.outcomes-section::after {
+  height: 5.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(4, 10, 24, 0.55) 100%
+  );
+}
+
+/* --- Control & Trust: darker, disciplined --- */
+.control-section {
+  background-color: #040a16;
+}
+
+.control-backdrop {
+  background:
+    linear-gradient(180deg, rgba(5, 12, 26, 0.4) 0%, #040a16 14%, #07101f 52%, #040a16 100%),
+    radial-gradient(ellipse 44% 38% at 52% 40%, rgba(var(--atmo-blue), 0.1), transparent 72%);
+}
+
+.control-atmosphere {
+  background:
+    radial-gradient(ellipse 30% 34% at 50% 42%, rgba(var(--atmo-cyan), 0.09), transparent 68%),
+    radial-gradient(ellipse 28% 32% at 18% 48%, rgba(var(--atmo-blue-soft), 0.08), transparent 70%),
+    radial-gradient(ellipse 24% 28% at 84% 40%, rgba(var(--atmo-violet), 0.05), transparent 70%),
+    radial-gradient(ellipse 20% 24% at 82% 70%, rgba(140, 100, 70, 0.04), transparent 72%);
+}
+
+.control-section::after {
+  height: 6.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(6, 12, 26, 0.45) 40%,
+    rgba(6, 13, 28, 0.85) 100%
+  );
+}
+
+.control-bottom__fade {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(100, 140, 200, 0.12),
+    transparent
+  );
+}
+
+/* --- FAQ: breathing space --- */
+.faq-section {
+  background-color: #060d1c;
+}
+
+.faq-backdrop {
+  background:
+    radial-gradient(ellipse 48% 36% at 50% 0%, rgba(var(--atmo-blue-soft), 0.08), transparent 62%),
+    radial-gradient(ellipse 40% 32% at 18% 18%, rgba(72, 48, 150, 0.06), transparent 65%),
+    linear-gradient(180deg, #060d1c 0%, #070f1e 50%, #08121f 100%);
+}
+
+.faq-atmosphere {
+  background:
+    radial-gradient(ellipse 42% 28% at 50% 8%, rgba(var(--atmo-blue-soft), 0.05), transparent 72%);
+  opacity: 0.85;
+}
+
+.faq-decor__mark {
+  color: rgba(var(--atmo-blue-soft), 0.05);
+}
+
+.faq-decor__line {
+  opacity: 0.45;
+}
+
+.faq-section::after {
+  height: 6rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(8, 18, 42, 0.35) 45%,
+    rgba(8, 19, 48, 0.7) 100%
+  );
+}
+
+/* --- Final CTA: closing color moment; bridge from FAQ --- */
+.cta-section::before {
+  height: 6rem;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 14, 32, 0.7) 0%,
+    rgba(8, 19, 48, 0.25) 55%,
+    transparent 100%
+  );
+}
+
+.cta-backdrop {
+  background:
+    radial-gradient(ellipse 58% 50% at 50% 36%, rgba(var(--atmo-blue-soft), 0.2), transparent 60%),
+    radial-gradient(ellipse 44% 38% at 16% 56%, rgba(var(--atmo-cyan), 0.12), transparent 62%),
+    radial-gradient(ellipse 42% 36% at 84% 46%, rgba(var(--atmo-violet), 0.16), transparent 60%),
+    linear-gradient(180deg, #081326 0%, #060d1c 48%, #040912 100%);
+}
+
+.cta-fade {
+  height: 6.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(5, 10, 22, 0.4) 40%,
+    rgba(4, 8, 18, 0.88) 100%
+  );
+}
+
+/* --- Footer remains quiet near-black --- */
+.site-footer__backdrop {
+  background:
+    radial-gradient(ellipse 38% 28% at 16% 0%, rgba(var(--atmo-cyan), 0.05), transparent 58%),
+    radial-gradient(ellipse 34% 26% at 84% 6%, rgba(var(--atmo-violet), 0.05), transparent 60%),
+    linear-gradient(180deg, #040912 0%, #03070f 55%, #02050c 100%);
+}
+
+/* --- Responsive: simplify atmospheres on small screens --- */
+@media (max-width: 767px) {
+  .hero-atmosphere,
+  .outcomes-atmosphere,
+  .control-atmosphere,
+  .faq-atmosphere,
+  .cta-atmosphere {
+    opacity: 0.55;
+  }
+
+  .paths-atmosphere {
+    opacity: 0.7;
+  }
+
+  .systems-hub-glow {
+    opacity: 0.75;
+  }
+
+  .workflow-side-glows {
+    opacity: 0.65;
+  }
+
+  .use-cases-grid,
+  .hiw-grid,
+  .systems-grid,
+  .workflow-grid {
+    opacity: 0.16;
+  }
+
+  .hero-fade,
+  .paths-section::after,
+  .use-cases-section::after,
+  .workflow-section::after,
+  .hiw-section::after,
+  .systems-section::after,
+  .outcomes-section::after,
+  .control-section::after,
+  .faq-section::after,
+  .cta-fade {
+    height: 4rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .systems-hub-glow {
+    background:
+      radial-gradient(ellipse 46% 40% at 50% 42%, rgba(var(--atmo-cyan), 0.16), transparent 68%),
+      radial-gradient(ellipse 36% 32% at 50% 42%, rgba(var(--atmo-blue), 0.1), transparent 70%);
+  }
+}

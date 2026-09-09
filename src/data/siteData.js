@@ -1,7 +1,7 @@
 export const siteData = {
-  brandShort: 'ERP + AI',
-  brandDescriptor: 'Operations Automation',
-  siteName: 'ERP + AI Automation',
+  brandShort: 'Marketome',
+  brandDescriptor: 'ERP + AI Automation',
+  siteName: 'Marketome ERP + AI Automation',
   tagline: 'Your ERP Runs the Business. AI Removes the Manual Work.',
   headlineLine1: 'Your ERP Runs the Business.',
   headlineLine2: 'AI Removes the Manual Work.',

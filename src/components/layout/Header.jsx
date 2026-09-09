@@ -1,38 +1,33 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import Container from '../ui/Container'
+import { companyData } from '../../data/companyData'
 import { siteData } from '../../data/siteData'
 
 function BrandMark({ scrolled }) {
   return (
     <a
       href="#top"
-      className="group inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-site"
-      aria-label={`${siteData.brandShort} home`}
+      className="site-brand group inline-flex max-w-[min(100%,18rem)] items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-site sm:max-w-none sm:gap-3"
+      aria-label={`${companyData.companyName} home`}
     >
-      <span
-        className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-brand/80 bg-surface-light/90"
-        aria-hidden="true"
-      >
-        <span className="absolute inset-[5px] rounded-sm bg-gradient-to-br from-primary via-[#5a4dff] to-accent-cyan opacity-95" />
-        <span className="absolute right-1 bottom-1 h-1.5 w-1.5 rounded-full bg-accent-green" />
+      <span className="site-brand__logo-shell">
+        <img
+          src={companyData.logo.wordmark}
+          alt={companyData.logo.alt}
+          className="site-brand__logo"
+          width={168}
+          height={36}
+          decoding="async"
+        />
       </span>
 
-      <span className="flex min-w-0 flex-col">
-        <span
-          className={`text-sm font-semibold tracking-tight sm:text-[0.95rem] ${
-            scrolled ? 'text-white' : 'text-main group-hover:text-white'
-          }`}
-        >
-          {siteData.brandShort}
-        </span>
-        <span
-          className={`hidden text-[10px] font-medium tracking-[0.08em] uppercase sm:block ${
-            scrolled ? 'text-white/80' : 'text-muted'
-          }`}
-        >
-          {siteData.brandDescriptor}
-        </span>
+      <span
+        className={`site-brand__descriptor hidden min-[420px]:block ${
+          scrolled ? 'site-brand__descriptor--scrolled' : 'site-brand__descriptor--top'
+        }`}
+      >
+        {siteData.brandDescriptor}
       </span>
     </a>
   )
@@ -72,13 +67,13 @@ function PromotionalBanner({ barRef }) {
       <div className="promo-banner__highlight pointer-events-none absolute inset-x-0 top-0 h-px" aria-hidden="true" />
       <div className="promo-banner__sheen pointer-events-none absolute inset-0" aria-hidden="true" />
       <Container className="relative">
-        <div className="flex h-9 items-center justify-between gap-3 sm:h-10 sm:gap-4">
-          <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+        <div className="promo-banner__row flex h-9 items-center justify-center sm:h-10">
+          <div className="promo-banner__group flex min-w-0 max-w-full items-center justify-center gap-2 sm:gap-2.5 md:gap-3">
             <span
               className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-green shadow-[0_0_8px_rgba(34,230,167,0.55)]"
               aria-hidden="true"
             />
-            <p className="truncate text-[11px] tracking-wide sm:text-xs">
+            <p className="min-w-0 truncate text-center text-[11px] tracking-wide sm:text-xs">
               <span className="font-semibold text-white">
                 {siteData.announcementTitle}
               </span>
@@ -89,15 +84,14 @@ function PromotionalBanner({ barRef }) {
                 {siteData.announcementSupport}
               </span>
             </p>
+            <a
+              href="#solutions"
+              className="inline-flex shrink-0 items-center gap-1 rounded-md text-[11px] font-semibold tracking-wide whitespace-nowrap text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:text-xs"
+            >
+              {siteData.announcementCta}
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
-
-          <a
-            href="#solutions"
-            className="inline-flex shrink-0 items-center gap-1 rounded-md text-[11px] font-semibold tracking-wide whitespace-nowrap text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:text-xs"
-          >
-            {siteData.announcementCta}
-            <span aria-hidden="true">→</span>
-          </a>
         </div>
       </Container>
     </div>
@@ -152,18 +146,11 @@ function Header() {
           aria-hidden="true"
         />
 
-        {/* Scrolled state: exact same #00BAFF → #8951FF gradient */}
+        {/* Scrolled state: exact multi-stop sticky Header gradient */}
         <motion.div
-          className="promo-gradient-fill absolute inset-0"
+          className="site-header-sticky-fill absolute inset-0"
           initial={false}
           animate={{ opacity: scrolled ? 1 : 0 }}
-          transition={transition}
-          aria-hidden="true"
-        />
-        <motion.div
-          className="absolute inset-0 bg-[#050b23]"
-          initial={false}
-          animate={{ opacity: scrolled ? 0.08 : 0 }}
           transition={transition}
           aria-hidden="true"
         />

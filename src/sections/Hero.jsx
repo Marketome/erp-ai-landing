@@ -238,21 +238,113 @@ function WorkflowVisual() {
   )
 }
 
+function HeroAtmosphere({ reduceMotion }) {
+  return (
+    <div
+      className={`hero-env${reduceMotion ? ' hero-env--static' : ' hero-env--live'}`}
+      aria-hidden="true"
+    >
+      {/* Left: fragmented manual complexity */}
+      <div className="hero-env__chaos">
+        <span className="hero-frag hero-frag--sheet" />
+        <span className="hero-frag hero-frag--sheet-b" />
+        <span className="hero-frag hero-frag--doc" />
+        <span className="hero-frag hero-frag--doc-b" />
+        <span className="hero-frag hero-frag--cells" />
+        <span className="hero-frag hero-frag--cells-b" />
+        <span className="hero-frag hero-frag--lines" />
+        <span className="hero-frag hero-frag--scatter" />
+        <span className="hero-frag hero-frag--scatter-b" />
+        <span className="hero-frag hero-frag--path" />
+      </div>
+
+      {/* Center → right: large curved data ribbon (fragmented → ordered) */}
+      <svg
+        className="hero-env__ribbon"
+        viewBox="0 0 1200 640"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="hero-ribbon-stroke" x1="0" y1="320" x2="1200" y2="280" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="rgba(79,107,255,0.08)" />
+            <stop offset="28%" stopColor="rgba(79,107,255,0.22)" />
+            <stop offset="52%" stopColor="rgba(137,81,255,0.35)" />
+            <stop offset="78%" stopColor="rgba(0,186,255,0.4)" />
+            <stop offset="100%" stopColor="rgba(32,215,255,0.28)" />
+          </linearGradient>
+          <linearGradient id="hero-ribbon-soft" x1="200" y1="0" x2="1000" y2="640" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="rgba(79,107,255,0.0)" />
+            <stop offset="40%" stopColor="rgba(137,81,255,0.12)" />
+            <stop offset="100%" stopColor="rgba(32,215,255,0.08)" />
+          </linearGradient>
+        </defs>
+        <path
+          className="hero-env__ribbon-glow"
+          d="M40 420 C 180 390, 260 340, 340 300 S 480 240, 560 260 S 720 320, 820 300 S 980 220, 1160 200"
+          stroke="url(#hero-ribbon-soft)"
+          strokeWidth="48"
+          strokeLinecap="round"
+        />
+        <path
+          className="hero-env__ribbon-path"
+          d="M40 420 C 180 390, 260 340, 340 300 S 480 240, 560 260 S 720 320, 820 300 S 980 220, 1160 200"
+          stroke="url(#hero-ribbon-stroke)"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeDasharray="3 14 6 18 2 22 8 10 4 16"
+          pathLength="100"
+        />
+        <path
+          className="hero-env__ribbon-path hero-env__ribbon-path--solid"
+          d="M560 260 C 680 290, 760 310, 820 300 S 980 220, 1160 200"
+          stroke="url(#hero-ribbon-stroke)"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          pathLength="100"
+        />
+        {!reduceMotion ? (
+          <circle className="hero-env__pulse" r="3.5" fill="rgba(32,215,255,0.85)">
+            <animateMotion
+              dur="11s"
+              repeatCount="indefinite"
+              path="M340 300 S 480 240, 560 260 S 720 320, 820 300 S 980 220, 1160 200"
+            />
+          </circle>
+        ) : null}
+      </svg>
+
+      {/* Right: structured technical environment behind diagram */}
+      <div className="hero-env__structure">
+        <span className="hero-struct hero-struct--grid" />
+        <span className="hero-struct hero-struct--matrix" />
+        <span className="hero-struct hero-struct--arc" />
+        <span className="hero-struct hero-struct--arc-b" />
+        <span className="hero-struct hero-struct--nodes" />
+        <span className="hero-struct hero-struct--rails" />
+      </div>
+    </div>
+  )
+}
+
 function Hero() {
   const reduceMotion = useReducedMotion()
 
   return (
     <section
       id="top"
-      className="relative overflow-hidden"
+      className="hero-section relative overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <div className="pointer-events-none absolute inset-0 hero-backdrop animate-backdrop-drift" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 hero-atmosphere" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 hero-grid-mask animate-grid-drift" aria-hidden="true" />
+      <HeroAtmosphere reduceMotion={Boolean(reduceMotion)} />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 hero-fade" aria-hidden="true" />
 
       <Container className="relative">
         <div className="grid min-h-[calc(100vh-3.5rem)] items-center gap-10 py-14 sm:min-h-[calc(100vh-4rem)] sm:gap-12 sm:py-16 lg:min-h-[calc(100vh-4.25rem)] xl:grid-cols-[minmax(17rem,24rem)_minmax(0,1fr)] xl:gap-10 xl:py-20">
-          <div className="max-w-xl xl:max-w-none">
+          <div className="hero-copy relative max-w-xl xl:max-w-none">
             <Reveal immediate delay={0.05} y={10} className="inline-flex">
               <div className="inline-flex items-center gap-2 rounded-full border border-brand/80 bg-surface/70 px-3 py-1.5 backdrop-blur-sm">
                 <span
@@ -297,7 +389,7 @@ function Hero() {
             </Reveal>
           </div>
 
-          <div className="min-w-0">
+          <div className="hero-diagram relative min-w-0">
             {reduceMotion ? (
               <WorkflowVisual />
             ) : (

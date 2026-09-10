@@ -17,6 +17,7 @@ import Reveal from '../components/ui/Reveal'
 import {
   systemConnections,
   systemFlowSequence,
+  systemNodeCoords,
   systemPrinciples,
 } from '../data/systemConnections'
 
@@ -36,34 +37,25 @@ const iconMap = {
 const hubCaps = ['Read', 'Connect', 'Validate', 'Act']
 const ease = [0.22, 1, 0.36, 1]
 
-/** Desktop network anchors — tightened toward hub for clearer connections */
-const ECO_COORDS = {
-  top: { x: 50, y: 12 },
-  'top-left': { x: 20, y: 26 },
-  'top-right': { x: 80, y: 26 },
-  left: { x: 12, y: 50 },
-  right: { x: 88, y: 50 },
-  'bottom-left': { x: 20, y: 74 },
-  'bottom-right': { x: 80, y: 74 },
-  bottom: { x: 50, y: 88 },
-  hub: { x: 50, y: 50 },
+const HUB = systemNodeCoords.hub
+/** Hub half-extents in viewBox % (matches ~9% smaller hub surface) */
+const HUB_HALF_W = 14.2
+const HUB_HALF_H = 13.4
+/** Extra gap so arrowheads sit just outside the hub edge */
+const HUB_EDGE_GAP = 0.85
+/** Approximate node half-size in viewBox % */
+const NODE_INSET = 7.6
+
+function hubEdgeInset(dx, dy) {
+  const len = Math.hypot(dx, dy) || 1
+  const ux = dx / len
+  const uy = dy / len
+  const tx = Math.abs(ux) < 1e-8 ? Number.POSITIVE_INFINITY : HUB_HALF_W / Math.abs(ux)
+  const ty = Math.abs(uy) < 1e-8 ? Number.POSITIVE_INFINITY : HUB_HALF_H / Math.abs(uy)
+  return Math.min(tx, ty) + HUB_EDGE_GAP
 }
 
-const HUB = ECO_COORDS.hub
-const HUB_RADIUS = 11
-
-const CAP_FOR_FLOW = {
-  'email-hub': 'Read',
-  'pdf-hub': 'Read',
-  'excel-hub': 'Connect',
-  'whatsapp-hub': 'Connect',
-  'hub-erp': 'Act',
-  'hub-crm': 'Connect',
-  'hub-accounting': 'Validate',
-  'hub-ecommerce': 'Act',
-}
-
-function shortenLine(x1, y1, x2, y2, startInset = 5.5, endInset = HUB_RADIUS) {
+function shortenLine(x1, y1, x2, y2, startInset, endInset) {
   const dx = x2 - x1
   const dy = y2 - y1
   const len = Math.hypot(dx, dy) || 1
@@ -77,12 +69,28 @@ function shortenLine(x1, y1, x2, y2, startInset = 5.5, endInset = HUB_RADIUS) {
   }
 }
 
+const CAP_FOR_FLOW = {
+  'email-hub': 'Read',
+  'pdf-hub': 'Read',
+  'excel-hub': 'Read',
+  'whatsapp-hub': 'Connect',
+  'hub-erp': 'Act',
+  'hub-crm': 'Connect',
+  'hub-accounting': 'Validate',
+  'hub-ecommerce': 'Act',
+}
+
 function SystemNode({ item, index, active, highlighted, onHover, reduceMotion }) {
   const Icon = iconMap[item.icon] ?? Database
+  const group = item.flow === 'in' ? 'source' : 'system'
 
   return (
     <motion.li
-      className={`systems-node systems-node--${item.position} systems-node--${item.flow} systems-node--${item.accent}${highlighted ? ' systems-node--hot' : ''}`}
+      className={`systems-node systems-node--${item.position} systems-node--${item.flow} systems-node--${group} systems-node--${item.accent}${highlighted ? ' systems-node--hot' : ''}`}
+      style={{
+        '--node-x': `${systemNodeCoords[item.position]?.x ?? 50}%`,
+        '--node-y': `${systemNodeCoords[item.position]?.y ?? 50}%`,
+      }}
       initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
       animate={
         reduceMotion || active
@@ -98,9 +106,10 @@ function SystemNode({ item, index, active, highlighted, onHover, reduceMotion })
       onMouseLeave={() => onHover?.(null)}
       onFocus={() => onHover?.(item.id)}
       onBlur={() => onHover?.(null)}
+      tabIndex={0}
     >
       <span className="systems-node__icon" aria-hidden="true">
-        <Icon className="h-[17px] w-[17px]" strokeWidth={1.85} />
+        <Icon className="h-5 w-5" strokeWidth={1.85} />
       </span>
       <span className="systems-node__copy">
         <span className="systems-node__label">{item.label}</span>
@@ -115,44 +124,47 @@ function ConnectionLines({ activeFlow, flowIndex, hoverId, reduceMotion, visible
     <svg
       className="systems-eco__lines"
       viewBox="0 0 100 100"
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="none"
       aria-hidden="true"
     >
       <defs>
         <linearGradient id="systems-line-in" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(90,140,255,0.75)" />
-          <stop offset="100%" stopColor="rgba(137,81,255,0.45)" />
+          <stop offset="0%" stopColor="rgba(110,160,255,0.98)" />
+          <stop offset="50%" stopColor="rgba(130,120,255,0.88)" />
+          <stop offset="100%" stopColor="rgba(150,100,255,0.78)" />
         </linearGradient>
         <linearGradient id="systems-line-out" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(0,186,255,0.5)" />
-          <stop offset="100%" stopColor="rgba(34,201,151,0.7)" />
+          <stop offset="0%" stopColor="rgba(0,200,255,0.88)" />
+          <stop offset="100%" stopColor="rgba(40,220,170,0.95)" />
         </linearGradient>
         <marker
           id="systems-arrow-in"
           viewBox="0 0 10 10"
-          refX="8"
+          refX="8.5"
           refY="5"
-          markerWidth="3.2"
-          markerHeight="3.2"
+          markerWidth="3.6"
+          markerHeight="3.6"
           orient="auto-start-reverse"
+          markerUnits="strokeWidth"
         >
-          <path d="M 0 1.2 L 8 5 L 0 8.8 Z" fill="rgba(120,160,255,0.85)" />
+          <path d="M 0 1.2 L 8.5 5 L 0 8.8 Z" fill="rgba(150,180,255,0.95)" />
         </marker>
         <marker
           id="systems-arrow-out"
           viewBox="0 0 10 10"
-          refX="8"
+          refX="8.5"
           refY="5"
-          markerWidth="3.2"
-          markerHeight="3.2"
+          markerWidth="3.6"
+          markerHeight="3.6"
           orient="auto-start-reverse"
+          markerUnits="strokeWidth"
         >
-          <path d="M 0 1.2 L 8 5 L 0 8.8 Z" fill="rgba(50,220,180,0.85)" />
+          <path d="M 0 1.2 L 8.5 5 L 0 8.8 Z" fill="rgba(60,230,185,0.95)" />
         </marker>
       </defs>
 
       {systemConnections.map((item) => {
-        const point = ECO_COORDS[item.position]
+        const point = systemNodeCoords[item.position]
         if (!point) return null
 
         const isHot =
@@ -161,15 +173,28 @@ function ConnectionLines({ activeFlow, flowIndex, hoverId, reduceMotion, visible
             ((activeFlow.from === item.id && activeFlow.to === 'hub') ||
               (activeFlow.to === item.id && activeFlow.from === 'hub')))
 
-        const from = item.flow === 'in' ? point : HUB
-        const to = item.flow === 'in' ? HUB : point
-        const line = shortenLine(from.x, from.y, to.x, to.y)
+        const fromHub = item.flow === 'out'
+        const from = fromHub ? HUB : point
+        const to = fromHub ? point : HUB
+        const peri = fromHub ? to : from
+        const hubInset = hubEdgeInset(peri.x - HUB.x, peri.y - HUB.y)
+        const line = shortenLine(
+          from.x,
+          from.y,
+          to.x,
+          to.y,
+          fromHub ? hubInset : NODE_INSET,
+          fromHub ? NODE_INSET : hubInset,
+        )
         const gradient = item.flow === 'in' ? 'url(#systems-line-in)' : 'url(#systems-line-out)'
         const marker =
           item.flow === 'in' ? 'url(#systems-arrow-in)' : 'url(#systems-arrow-out)'
 
         return (
-          <g key={item.id} className={isHot ? 'systems-line-group--hot' : undefined}>
+          <g
+            key={item.id}
+            className={`systems-line-group systems-line-group--${item.flow}${isHot ? ' systems-line-group--hot' : ''}`}
+          >
             <line
               className={`systems-line systems-line--${item.flow}${visible ? ' systems-line--visible' : ''}`}
               x1={line.x1}
@@ -186,16 +211,16 @@ function ConnectionLines({ activeFlow, flowIndex, hoverId, reduceMotion, visible
       {!reduceMotion && activeFlow ? (
         <circle
           key={`${activeFlow.from}-${activeFlow.to}-${flowIndex}`}
-          className="systems-pulse"
-          r="0.9"
+          className={`systems-pulse systems-pulse--${activeFlow.from === 'hub' ? 'out' : 'in'}`}
+          r="1.3"
         >
           <animateMotion
-            dur="1.4s"
+            dur="1.35s"
             fill="freeze"
             keyPoints="0;1"
             keyTimes="0;1"
             calcMode="linear"
-            path={`M ${ECO_COORDS[activeFlow.from]?.x ?? HUB.x},${ECO_COORDS[activeFlow.from]?.y ?? HUB.y} L ${ECO_COORDS[activeFlow.to]?.x ?? HUB.x},${ECO_COORDS[activeFlow.to]?.y ?? HUB.y}`}
+            path={`M ${systemNodeCoords[activeFlow.from]?.x ?? HUB.x},${systemNodeCoords[activeFlow.from]?.y ?? HUB.y} L ${systemNodeCoords[activeFlow.to]?.x ?? HUB.x},${systemNodeCoords[activeFlow.to]?.y ?? HUB.y}`}
           />
         </circle>
       ) : null}
@@ -225,6 +250,13 @@ function ExistingSystems() {
   const flowKey = activeFlow ? `${activeFlow.from}-${activeFlow.to}` : ''
   const activeCap = CAP_FOR_FLOW[flowKey] ?? null
   const hubHot = Boolean(hoverId || activeFlow)
+  const hoverItem = systemConnections.find((item) => item.id === hoverId)
+  const hoverCap =
+    hoverItem?.flow === 'in'
+      ? 'Read'
+      : hoverItem?.flow === 'out'
+        ? 'Connect'
+        : null
 
   return (
     <section
@@ -263,10 +295,11 @@ function ExistingSystems() {
           </Reveal>
         </div>
 
-        <div
-          ref={ecoRef}
-          className={`systems-eco mt-9 sm:mt-10${active ? ' systems-eco--live' : ''}${hubHot ? ' systems-eco--hub-hot' : ''}`}
-        >
+        <div className="systems-eco-stage">
+          <div
+            ref={ecoRef}
+            className={`systems-eco mt-7 sm:mt-8${active ? ' systems-eco--live' : ''}${hubHot ? ' systems-eco--hub-hot' : ''}`}
+          >
           <ConnectionLines
             activeFlow={activeFlow}
             flowIndex={flowIndex}
@@ -290,6 +323,7 @@ function ExistingSystems() {
                   : { duration: 0.45, delay: 0.1, ease }
               }
             >
+              <div className="systems-hub__halo" aria-hidden="true" />
               <div className="systems-hub__core">
                 <span className="systems-hub__status" aria-hidden="true" />
                 <p className="systems-hub__label">ERP + AI</p>
@@ -299,7 +333,9 @@ function ExistingSystems() {
                     <li
                       key={cap}
                       className={
-                        activeCap === cap ? 'systems-hub__cap--active' : undefined
+                        activeCap === cap || hoverCap === cap
+                          ? 'systems-hub__cap--active'
+                          : undefined
                       }
                     >
                       {cap}
@@ -327,9 +363,10 @@ function ExistingSystems() {
               />
             ))}
           </ol>
+          </div>
         </div>
 
-        <Reveal delay={0.26} className="mt-8 sm:mt-9">
+        <Reveal delay={0.22} className="mt-5 sm:mt-6">
           <ul className="systems-principles">
             {systemPrinciples.map((item) => {
               const Icon = iconMap[item.icon] ?? Database

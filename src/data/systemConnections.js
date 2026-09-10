@@ -94,16 +94,18 @@ export const systemPrinciples = [
   },
 ]
 
-/** Percent coords for desktop SVG network (viewBox 0 0 100 100) */
+/** Percent coords for desktop SVG network (viewBox 0 0 100 100)
+ * Compact ring with left sources edged outward enough to clear the hub.
+ */
 export const systemNodeCoords = {
-  top: { x: 50, y: 9 },
-  'top-left': { x: 16, y: 24 },
-  'top-right': { x: 84, y: 24 },
-  left: { x: 8, y: 50 },
-  right: { x: 92, y: 50 },
-  'bottom-left': { x: 16, y: 76 },
-  'bottom-right': { x: 84, y: 76 },
-  bottom: { x: 50, y: 91 },
+  top: { x: 50, y: 19.5 },
+  'top-left': { x: 21.5, y: 29.5 },
+  'top-right': { x: 78.5, y: 29.5 },
+  left: { x: 15, y: 50 },
+  right: { x: 85, y: 50 },
+  'bottom-left': { x: 21.5, y: 70.5 },
+  'bottom-right': { x: 78.5, y: 70.5 },
+  bottom: { x: 50, y: 80.5 },
   hub: { x: 50, y: 50 },
 }
 

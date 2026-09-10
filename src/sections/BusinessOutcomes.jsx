@@ -124,9 +124,9 @@ function BusinessOutcomes() {
 
           <Reveal delay={0.14}>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#c5d5ee] sm:text-[1.05rem] sm:leading-7">
-              ERP + AI helps teams reduce manual processing, move information
-              through workflows more consistently and keep people focused on the
-              decisions that require human judgment.
+              AI automation helps teams reduce manual processing, move
+              information through workflows more consistently and keep people
+              focused on the decisions that require human judgment.
             </p>
           </Reveal>
         </div>
@@ -224,8 +224,8 @@ function BusinessOutcomes() {
             Start with one process. Expand as the workflow proves its value.
           </p>
           <p className="outcomes-closer__text">
-            ERP + AI can be introduced around specific operational pain points
-            instead of requiring a complete transformation on day one.
+            AI automation can be introduced around specific operational pain
+            points instead of requiring a complete transformation on day one.
           </p>
         </Reveal>
 

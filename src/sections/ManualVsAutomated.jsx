@@ -393,7 +393,7 @@ function ManualVsAutomated() {
                   key={`${active.id}-auto`}
                   processKey={`${active.id}-auto`}
                   variant="auto"
-                  heading="With ERP + AI"
+                  heading="With AI Automation"
                   support="Structured workflows. AI-assisted processing. Human control where it matters."
                   steps={active.automatedSteps}
                   summary={active.automatedSummary}

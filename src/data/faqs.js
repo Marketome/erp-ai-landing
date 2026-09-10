@@ -1,8 +1,8 @@
 export const faqIntro = {
   eyebrow: 'Frequently Asked Questions',
-  headline: 'Questions About ERP + AI Automation',
+  headline: 'Questions About AI Automation',
   description:
-    'Understand how ERP + AI can fit into your existing operations, what kinds of workflows can be automated, and where your team stays involved.',
+    'Understand how AI automation can fit into your existing operations, what kinds of workflows can be automated, and where your team stays involved.',
 }
 
 export const faqs = [
@@ -10,11 +10,11 @@ export const faqs = [
     id: 'replace-erp',
     question: 'Do we need to replace our existing ERP?',
     answer:
-      'No. The platform is designed to work around your existing ERP and operational systems. AI can help process documents, structure information and prepare workflow actions while your ERP remains at the center of your operations.',
+      'No. AI automation is designed to work around your existing ERP and operational systems. It can help process documents, structure information and prepare workflow actions while your ERP remains at the center of your operations.',
   },
   {
     id: 'what-processes',
-    question: 'What business processes can ERP + AI automate?',
+    question: 'What business processes can AI automation handle?',
     answer:
       'Common opportunities include order processing, quotation and RFQ workflows, procurement, tender review, invoice and data entry, production reporting, customer follow-up and inventory-related processes. The best starting point depends on where your team currently spends the most time on repetitive work.',
   },
@@ -33,9 +33,9 @@ export const faqs = [
   },
   {
     id: 'existing-systems',
-    question: 'Can the platform work with our existing business systems?',
+    question: 'Can AI automation work with our existing business systems?',
     answer:
-      'The approach is designed around the systems and workflows a business already uses. The specific connection method depends on your ERP, applications, available interfaces and workflow requirements, so the integration approach is evaluated for each implementation.',
+      'Yes. The approach is designed around the systems and workflows a business already uses. The specific connection method depends on your ERP, applications, available interfaces and workflow requirements, so the integration approach is evaluated for each implementation.',
   },
   {
     id: 'where-to-start',

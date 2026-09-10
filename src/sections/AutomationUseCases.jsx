@@ -87,7 +87,7 @@ function UseCaseCard({ item, index }) {
 
           <div className="use-case-card__ai relative flex flex-1 flex-col rounded-xl px-3.5 py-3.5">
             <p className="text-[10px] font-semibold tracking-[0.16em] text-[#7ee7ff] uppercase">
-              With ERP + AI
+              With AI Automation
             </p>
             <p className="mt-2.5 text-[13px] leading-relaxed text-[#e2ecfb] sm:text-sm">
               {item.automation}
@@ -139,9 +139,9 @@ function AutomationUseCases() {
           <Reveal delay={0.14}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#c5d5ee] sm:text-[1.05rem] sm:leading-7">
               From incoming orders and RFQs to procurement, reporting and
-              customer follow-up, ERP + AI helps remove repetitive operational
-              work while keeping your existing systems at the center of the
-              process.
+              customer follow-up, AI automation helps remove repetitive
+              operational work while keeping your existing systems at the center
+              of the process.
             </p>
           </Reveal>
         </div>

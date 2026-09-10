@@ -161,9 +161,9 @@ function ControlAndTrust() {
 
           <Reveal delay={0.14}>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#c5d5ee] sm:text-[1.05rem] sm:leading-7">
-              ERP + AI can handle repetitive document processing and workflow
-              preparation while your team remains involved where approvals,
-              exceptions and business judgment matter.
+              AI automation can handle repetitive document processing and
+              workflow preparation while your team remains involved where
+              approvals, exceptions and business judgment matter.
             </p>
           </Reveal>
         </div>

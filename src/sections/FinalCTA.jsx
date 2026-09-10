@@ -12,7 +12,7 @@ const ctaContent = {
   eyebrow: 'Start with one process',
   headline: 'Find the Right Workflow to Automate First',
   description:
-    'Show us where your team is spending time on repetitive operational work. We can review the process, understand how information moves today, and explore where ERP + AI automation may fit.',
+    'Show us where your team is spending time on repetitive operational work. We can review the process, understand how information moves today, and explore which existing workflow should be automated first.',
   primaryCTA: 'Book a Demo',
   support:
     'Keep your existing ERP. Start with the workflow creating the most manual work.',

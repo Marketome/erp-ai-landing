@@ -643,8 +643,8 @@ function AutomationPaths() {
           <Reveal delay={0.14}>
             <p className="paths-intro__desc mt-4 max-w-xl text-base leading-relaxed text-[#c5d5ee] sm:text-[1.05rem] sm:leading-7">
               Start with the operational process creating the most manual work.
-              ERP + AI can automate document-heavy workflows while keeping your
-              existing ERP and business systems at the center.
+              AI automation can handle document-heavy workflows while keeping
+              your existing ERP and business systems at the center.
             </p>
           </Reveal>
         </div>

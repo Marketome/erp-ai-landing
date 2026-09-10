@@ -60,8 +60,8 @@ function Footer() {
             </p>
 
             <p className="site-footer__blurb">
-              Marketome helps businesses improve digital and operational workflows
-              through technology, automation and AI-driven solutions.
+              Marketome helps businesses add AI automation to the ERP systems,
+              tools and workflows they already use.
             </p>
 
             <a href="#demo" className="site-footer__cta">

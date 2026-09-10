@@ -287,9 +287,9 @@ function ExistingSystems() {
 
           <Reveal delay={0.14}>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#c5d5ee] sm:text-[1.05rem] sm:leading-7">
-              ERP + AI works around the tools, documents and operational systems
-              already used across your business, helping information move between
-              people, workflows and your ERP without forcing a complete
+              AI automation works around the tools, documents and operational
+              systems already used across your business, helping information move
+              between people, workflows and your ERP without forcing a complete
               technology replacement.
             </p>
           </Reveal>

@@ -19,7 +19,7 @@ export const siteData = {
   demoBooking: {
     calendarUrl:
       'https://cal.id/marketome/101-with-marketome?duration=30',
-    endpoint: '/api/send-demo-lead.php',
+    endpoint: '/api/send-demo-lead',
     leadEmail: 'Support@marketome.com',
   },
 }

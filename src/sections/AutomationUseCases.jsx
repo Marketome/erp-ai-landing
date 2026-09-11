@@ -1,6 +1,5 @@
 import {
   ArrowDown,
-  ArrowRight,
   ChartColumn,
   ClipboardList,
   FileText,
@@ -93,15 +92,6 @@ function UseCaseCard({ item, index }) {
               {item.automation}
             </p>
           </div>
-        </div>
-
-        <div className="relative mt-5 flex items-center justify-end">
-          <span
-            className="use-case-card__arrow inline-flex h-8 w-8 items-center justify-center rounded-full"
-            aria-hidden="true"
-          >
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </span>
         </div>
       </motion.article>
     </Reveal>

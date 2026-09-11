@@ -1,3 +1,4 @@
+import DemoCTA from '../demo/DemoCTA'
 import { companyData } from '../../data/companyData'
 import { siteData } from '../../data/siteData'
 
@@ -64,10 +65,10 @@ function Footer() {
               tools and workflows they already use.
             </p>
 
-            <a href="#demo" className="site-footer__cta">
+            <DemoCTA source="footer" className="site-footer__cta">
               {siteData.headerCta}
               <span aria-hidden="true">→</span>
-            </a>
+            </DemoCTA>
           </div>
 
           <div className="site-footer__col site-footer__col--contact">

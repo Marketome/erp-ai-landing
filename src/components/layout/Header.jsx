@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
+import DemoCTA from '../demo/DemoCTA'
 import Container from '../ui/Container'
 import { companyData } from '../../data/companyData'
 import { siteData } from '../../data/siteData'
@@ -35,8 +36,8 @@ function BrandMark({ scrolled }) {
 
 function HeaderCta({ scrolled }) {
   return (
-    <a
-      href="#demo"
+    <DemoCTA
+      source="header"
       className={[
         'header-cta group inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold sm:px-4 sm:text-sm',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
@@ -52,7 +53,7 @@ function HeaderCta({ scrolled }) {
       >
         →
       </span>
-    </a>
+    </DemoCTA>
   )
 }
 

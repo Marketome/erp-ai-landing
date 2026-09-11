@@ -1,10 +1,9 @@
 import { useId, useRef } from 'react'
 import { ShieldCheck } from 'lucide-react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
-import Button from '../components/ui/Button'
+import DemoCTA from '../components/demo/DemoCTA'
 import Container from '../components/ui/Container'
 import Reveal from '../components/ui/Reveal'
-import { companyData } from '../data/companyData'
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -23,7 +22,6 @@ function FinalCTA() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.32 })
   const gradId = useId().replace(/:/g, '')
-  const demoHref = `mailto:${companyData.email}?subject=${encodeURIComponent('Book a Demo')}`
 
   return (
     <section
@@ -175,10 +173,10 @@ function FinalCTA() {
 
           <Reveal delay={0.26}>
             <div className="mt-9 flex flex-col items-center gap-4">
-              <Button href={demoHref} className="cta-panel__button">
+              <DemoCTA source="final-cta" className="cta-panel__button">
                 <span className="cta-panel__button-label">{ctaContent.primaryCTA}</span>
                 <span className="cta-panel__button-sweep" aria-hidden="true" />
-              </Button>
+              </DemoCTA>
               <p className="cta-support inline-flex max-w-lg items-start justify-center gap-2 text-center text-sm leading-relaxed">
                 <ShieldCheck
                   className="mt-0.5 h-4 w-4 shrink-0 text-accent-green/80"

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
-import Button from '../components/ui/Button'
+import DemoCTA from '../components/demo/DemoCTA'
 import Container from '../components/ui/Container'
 import Reveal from '../components/ui/Reveal'
 import { siteData } from '../data/siteData'
@@ -343,7 +343,7 @@ function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 hero-fade" aria-hidden="true" />
 
       <Container className="relative">
-        <div className="grid min-h-[calc(100vh-3.5rem)] items-center gap-10 py-14 sm:min-h-[calc(100vh-4rem)] sm:gap-12 sm:py-16 lg:min-h-[calc(100vh-4.25rem)] xl:grid-cols-[minmax(17rem,24rem)_minmax(0,1fr)] xl:gap-10 xl:py-20">
+        <div className="grid min-h-[calc(100vh-3.5rem)] items-center gap-10 pt-10 pb-14 sm:min-h-[calc(100vh-4rem)] sm:gap-12 sm:pt-11 sm:pb-16 lg:min-h-[calc(100vh-4.25rem)] xl:grid-cols-[minmax(17rem,24rem)_minmax(0,1fr)] xl:gap-10 xl:pt-[3.125rem] xl:pb-20">
           <div className="hero-copy relative max-w-xl xl:max-w-none">
             <Reveal immediate delay={0.05} y={10} className="inline-flex">
               <div className="inline-flex items-center gap-2 rounded-full border border-brand/80 bg-surface/70 px-3 py-1.5 backdrop-blur-sm">
@@ -376,11 +376,13 @@ function Hero() {
             </Reveal>
 
             <Reveal immediate delay={0.34} y={12}>
-              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-                <Button href="#demo">{siteData.primaryCTA}</Button>
-                <Button href="#solutions" variant="secondary">
-                  {siteData.secondaryCTA}
-                </Button>
+              <div className="mt-8">
+                <DemoCTA
+                  source="hero"
+                  className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-main transition-colors duration-200 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-site"
+                >
+                  {siteData.primaryCTA}
+                </DemoCTA>
               </div>
             </Reveal>
 

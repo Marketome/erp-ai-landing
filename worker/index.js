@@ -1,8 +1,8 @@
 /**
- * Book a Demo lead endpoint for Marketome AI Automation landing page.
- * Cloudflare Pages Function — POST /api/send-demo-lead
+ * Marketome AI Automation landing — Cloudflare Worker entrypoint.
+ * Serves API routes for Workers + Static Assets deployments.
  *
- * Required Pages environment variable (server-side only):
+ * Required runtime env (Cloudflare dashboard / secrets):
  * - FORMSPREE_FORM_ID
  */
 
@@ -43,6 +43,20 @@ function failureResponse(status = 502) {
   return jsonResponse(
     { success: false, message: 'Unable to submit lead.' },
     status,
+  )
+}
+
+function methodNotAllowedResponse() {
+  return jsonResponse(
+    { success: false, message: 'Unable to submit lead.' },
+    405,
+  )
+}
+
+function notFoundResponse() {
+  return jsonResponse(
+    { success: false, message: 'Not found.' },
+    404,
   )
 }
 
@@ -171,11 +185,11 @@ function parseLead(data) {
   }
 }
 
-export async function onRequestPost(context) {
+async function handleSendDemoLead(request, env) {
   try {
     let data
     try {
-      data = await context.request.json()
+      data = await request.json()
     } catch {
       return invalidResponse()
     }
@@ -189,7 +203,7 @@ export async function onRequestPost(context) {
       return successResponse()
     }
 
-    const formId = context.env.FORMSPREE_FORM_ID
+    const formId = env.FORMSPREE_FORM_ID
     if (!formId) {
       console.error('Demo lead misconfigured: missing FORMSPREE_FORM_ID')
       return failureResponse(500)
@@ -234,13 +248,22 @@ export async function onRequestPost(context) {
   }
 }
 
-export async function onRequest(context) {
-  if (context.request.method === 'POST') {
-    return onRequestPost(context)
-  }
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url)
+    const pathname = url.pathname.replace(/\/+$/, '') || '/'
 
-  return jsonResponse(
-    { success: false, message: 'Unable to submit lead.' },
-    405,
-  )
+    if (pathname === '/api/send-demo-lead') {
+      if (request.method !== 'POST') {
+        return methodNotAllowedResponse()
+      }
+      return handleSendDemoLead(request, env)
+    }
+
+    if (pathname.startsWith('/api/')) {
+      return notFoundResponse()
+    }
+
+    return notFoundResponse()
+  },
 }

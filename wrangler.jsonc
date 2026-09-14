@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "erp-ai-landing",
+  "compatibility_date": "2026-09-14",
+  "main": "./worker/index.js",
+  "assets": {
+    "directory": "./dist",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  }
+}

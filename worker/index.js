@@ -48,7 +48,7 @@ function failureResponse(status = 502) {
 
 function methodNotAllowedResponse() {
   return jsonResponse(
-    { success: false, message: 'Unable to submit lead.' },
+    { success: false, message: 'Method not allowed.' },
     405,
   )
 }
@@ -203,9 +203,12 @@ async function handleSendDemoLead(request, env) {
       return successResponse()
     }
 
-    const formId = env.FORMSPREE_FORM_ID
+    const formId =
+      typeof env.FORMSPREE_FORM_ID === 'string'
+        ? env.FORMSPREE_FORM_ID.trim()
+        : ''
     if (!formId) {
-      console.error('Demo lead misconfigured: missing FORMSPREE_FORM_ID')
+      console.error('FORMSPREE_FORM_ID is not configured')
       return failureResponse(500)
     }
 
@@ -237,7 +240,9 @@ async function handleSendDemoLead(request, env) {
     )
 
     if (!formspreeResponse.ok) {
-      console.error('Demo lead Formspree failed:', formspreeResponse.status)
+      console.error('Formspree submission failed', {
+        status: formspreeResponse.status,
+      })
       return failureResponse(502)
     }
 
